@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
+import { FilterableFooter } from "./FilterableFooter";
 
 export default function App() {
   const [todos, setTodos] = useState(() => { // whatever returns from the function is the default value
@@ -41,11 +42,20 @@ export default function App() {
     });
   }
 
+  function clearCompleted() {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => {
+      return !todo.completed
+      })
+    })
+  }
+
   return (
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <FilterableFooter list={todos} clearCompleted={clearCompleted}/>
     </>
   );
 }

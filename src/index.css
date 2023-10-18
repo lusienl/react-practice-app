@@ -6,7 +6,7 @@
 body {
   background: #333;
   color: hsl(200, 100%, 90%);
-  max-width: 400px;
+  max-width: 450px;
   padding: 1rem;
   margin: 0 auto;
 }
@@ -137,4 +137,26 @@ body {
 
 .list li:has(input:checked) label:hover::before {
   background: hsl(200, 100%, 30%);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 35px;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: hsl(200, 20%, 40%);
+  border: 1px black;
+}
+/* 
+.counter {
+
+} */
+.filters {
+list-style-type: none;
+display: inline-flex;
+gap: 15px;
+margin: 0;
+padding: 0;
 }
