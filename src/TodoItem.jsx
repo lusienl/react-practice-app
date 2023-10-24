@@ -1,6 +1,8 @@
 export function TodoItem({completed, id, title, toggleTodo, deleteTodo}) {
+  const enableEditing = () => {}
+
   return (
-    <li>
+    <li className="todo-li">
       <label>
         <input
           type="checkbox"

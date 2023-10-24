@@ -149,10 +149,7 @@ body {
   background-color: hsl(200, 20%, 40%);
   border: 1px black;
 }
-/* 
-.counter {
 
-} */
 .filters {
 list-style-type: none;
 display: inline-flex;
@@ -160,3 +157,24 @@ gap: 15px;
 margin: 0;
 padding: 0;
 }
+
+.All, .Active, .Completed {
+  padding: 2px;
+}
+
+.All:hover,
+.Active:hover,
+.Completed:hover {
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.clear-completed:hover {
+  text-decoration: underline;
+}
+
+.selected {
+  border: 1px solid rgb(184, 187, 215);
+}
+
+

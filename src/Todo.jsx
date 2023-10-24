@@ -72,6 +72,7 @@ export function Todo() {
         list={todos}
         clearCompleted={clearCompleted}
         filterHandler={filterHandler}
+        currentFilter={type} 
       />
     </>
   );
