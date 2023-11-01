@@ -1,21 +1,47 @@
-export function TodoItem({completed, id, title, toggleTodo, deleteTodo}) {
-  const enableEditing = () => {}
+import { useState } from "react";
+
+export function TodoItem({
+  completed,
+  id,
+  title,
+  toggleTodo,
+  deleteTodo,
+  saveTodo,
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingValue, setEditingValue] = useState(title);
+
+  const handleKeydown = (e) => {
+    if (e.code === "Enter" || e.type === "blur") {
+      saveTodo(id, editingValue);
+      setIsEditing(false);
+    }
+  };
 
   return (
     <li className="todo-li">
-      <label>
+      <input
+        className="checkbox"
+        type="checkbox"
+        checked={completed}
+        onChange={(e) => toggleTodo(id, e.target.checked)}
+      />
+      {isEditing ? (
         <input
-          type="checkbox"
-          checked={completed}
-          onChange={(e) => toggleTodo(id, e.target.checked)}
+          autoFocus
+          value={editingValue}
+          onChange={(e) => setEditingValue(e.target.value)}
+          onKeyDown={handleKeydown}
+          onBlur={handleKeydown}
         />
-        {title}
-      </label>
+      ) : (
+        <label onDoubleClick={() => setIsEditing(true)}>{title}</label>
+      )}
       <button
         className="btn btn-danger"
-          onClick={() => {
-            deleteTodo(id);
-          }}
+        onClick={() => {
+          deleteTodo(id);
+        }}
       >
         Delete
       </button>

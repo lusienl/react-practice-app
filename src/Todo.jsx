@@ -38,6 +38,21 @@ export function Todo() {
     ]);
   }
 
+  function saveTodo(id, title) {
+    setTodos((currentTodos) => {
+      // Проверяем, является ли новый заголовок пустой строкой
+      if (title.trim() === "") {
+        // Если заголовок пуст, удаляем соответствующий todo
+        return currentTodos.filter((todo) => todo.id !== id);
+      } else {
+        // Иначе обновляем заголовок todo
+        return currentTodos.map((todo) =>
+          todo.id === id ? { ...todo, title: title } : todo
+        );
+      }
+    });
+  }  
+
   const filterHandler = (filterType) => {
     localStorage.setItem("TYPE", filterType);
     setType(filterType);
@@ -67,12 +82,17 @@ export function Todo() {
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
-      <TodoList todos={filteredTodos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <TodoList
+        todos={filteredTodos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+        saveTodo={saveTodo}
+      />
       <FilterableFooter
         list={todos}
         clearCompleted={clearCompleted}
         filterHandler={filterHandler}
-        currentFilter={type} 
+        currentFilter={type}
       />
     </>
   );
